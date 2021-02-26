@@ -11,7 +11,7 @@ int endX;
 int endY;
 
 int pos[2][100];
-int times = 0;
+int times;
 
 bool isSetStarted;
 bool isSetEnded;
@@ -47,9 +47,9 @@ __declspec(dllexport) int** GetMaze(int& width, int& height) {
 }
 
 __declspec(dllexport) void GetNextPosition(int& xpos, int& ypos) {
-	xpos = pos[0][times];
-	ypos = pos[1][times];
-	times = times + 1;
+	xpos = pos[0][times] = times;
+	ypos = pos[1][times] = times;
+	times++;
 }
 
 __declspec(dllexport) void SetStart(int xpos, int ypos) {
