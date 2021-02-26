@@ -5,7 +5,7 @@ using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
 __declspec(dllimport) char* GetTeam();
 __declspec(dllimport) void SetStart(int xpos, int ypos);
-__declspec(dllimport) void SetMaze(const int** data, int width, int height);
+__declspec(dllimport) void SetMaze(const int** tempData, int width, int height);
 __declspec(dllimport) int** GetMaze(int& width, int& height);
 __declspec(dllimport) void GetNextPosition(int& xpos, int& ypos);
 __declspec(dllimport) void SetEnd(int xpos, int ypos);
@@ -28,13 +28,23 @@ namespace UnitTest1
 		{
 			try
 			{
-				int** pos[10][10];
-				for (int i = 0; i < 10; i++) {
-					for (int j = 0; j < 10; j++) {
-						pos[i][j] = 1;
+				int** tempData = new int* [10];
+
+				for (int i = 0; i < 10; i++)
+				{
+					tempData[i] = new int[10];
+				}
+
+				for (int i = 0; i < 10; i++)
+				{
+					for (int j = 0; j < 10; j++)
+					{
+						tempData[i][j] = 1;
 					}
 				}
-				SetMaze(pos, 10, 10);
+
+				const int** data = (const int**)tempData;
+				SetMaze(data, 10, 10);
 			}
 			catch (const std::exception&)
 			{
@@ -87,14 +97,48 @@ namespace UnitTest1
 			}
 		}
 
+		TEST_METHOD(TestGetStart)
+		{
+			try
+			{
+				int x = 1;
+				int y = 1;
+				int& xA = x;
+				int& yA = y;
+				GetStart(xA, yA);
+			}
+			catch (const std::exception&)
+			{
+				Assert::Fail(L"set start threw exception");
+			}
+		}
+
 		TEST_METHOD(TestSetEnd)
 		{
-
+			try
+			{
+				SetEnd(1, 2);
+			}
+			catch (const std::exception&)
+			{
+				Assert::Fail(L"set start threw exception");
+			}
 		}
 
 		TEST_METHOD(TestGetEnd)
 		{
-
+			try
+			{
+				int x = 1;
+				int y = 1;
+				int& xA = x;
+				int& yA = y;
+				GetEnd(xA, yA);
+			}
+			catch (const std::exception&)
+			{
+				Assert::Fail(L"set start threw exception");
+			}
 		}
 	};
 }
