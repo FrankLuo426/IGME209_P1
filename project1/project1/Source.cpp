@@ -16,6 +16,8 @@ int times = 0;
 bool isSetStarted;
 bool isSetEnded;
 
+
+
 __declspec(dllexport) char* GetTeam() {
 	return memberName;
 }
@@ -45,8 +47,8 @@ __declspec(dllexport) int** GetMaze(int& width, int& height) {
 }
 
 __declspec(dllexport) void GetNextPosition(int& xpos, int& ypos) {
-	pos[0][times] = xpos;
-	pos[1][times] = ypos;
+	xpos = pos[0][times];
+	ypos = pos[1][times];
 	times = times + 1;
 }
 
