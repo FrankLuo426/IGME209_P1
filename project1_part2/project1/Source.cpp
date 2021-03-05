@@ -22,25 +22,39 @@ __declspec(dllexport) char* GetTeam() {
 	return memberName;
 }
 
-__declspec(dllexport) void SetMaze(const int** data, int width, int height) {
-	mazeWidth = width;
-	mazeHeight = height;
-	mazeData = new int* [width];
+__declspec(dllexport) bool SetMaze(const int** data, int width, int height) {
+
+	try
+	{
+		mazeWidth = width;
+		mazeHeight = height;
+		mazeData = new int* [width];
 
 
-	for (int i = 0; i < width; i++) {
-		mazeData[i] = new int[height];
-	}
-
-
-	for (int i = 0; i < width; i++) {
-		for (int j = 0; j < height; j++) {
-			mazeData[i][j] = (int)data[i][j];
+		for (int i = 0; i < width; i++) {
+			mazeData[i] = new int[height];
 		}
+
+
+		for (int i = 0; i < width; i++) {
+			for (int j = 0; j < height; j++) {
+				mazeData[i][j] = (int)data[i][j];
+			}
+		}
+
 	}
+	catch (const std::exception&)
+	{
+		return false;
+	}
+	return true;
 }
 
 __declspec(dllexport) int** GetMaze(int& width, int& height) {
+	if (mazeData == NULL)
+	{
+		return nullptr;
+	}
 	width = mazeWidth;
 	height = mazeHeight;
 	return mazeData;

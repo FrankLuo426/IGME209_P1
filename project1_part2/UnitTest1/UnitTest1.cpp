@@ -5,7 +5,7 @@ using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
 __declspec(dllimport) char* GetTeam();
 __declspec(dllimport) void SetStart(int xpos, int ypos);
-__declspec(dllimport) void SetMaze(const int** tempData, int width, int height);
+__declspec(dllimport) bool SetMaze(const int** tempData, int width, int height);
 __declspec(dllimport) int** GetMaze(int& width, int& height);
 __declspec(dllimport) void GetNextPosition(int& xpos, int& ypos);
 __declspec(dllimport) void SetEnd(int xpos, int ypos);
