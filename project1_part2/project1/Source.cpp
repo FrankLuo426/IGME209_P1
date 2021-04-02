@@ -61,10 +61,18 @@ __declspec(dllexport) int** GetMaze(int& width, int& height) {
 }
 
 __declspec(dllexport) bool GetNextPosition(int& xpos, int& ypos) {
-	xpos = pos[0][times] = times;
-	ypos = pos[1][times] = times;
-	times++;
 
+	if (pos[0][times]!=NULL && pos[1][times] != NULL)
+	{
+		xpos = pos[0][times] = times;
+		ypos = pos[1][times] = times;
+		times++;
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 }
 
 __declspec(dllexport) bool SetStart(int xpos, int ypos) {
