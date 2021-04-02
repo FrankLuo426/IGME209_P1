@@ -60,44 +60,65 @@ __declspec(dllexport) int** GetMaze(int& width, int& height) {
 	return mazeData;
 }
 
-__declspec(dllexport) void GetNextPosition(int& xpos, int& ypos) {
+__declspec(dllexport) bool GetNextPosition(int& xpos, int& ypos) {
 	xpos = pos[0][times] = times;
 	ypos = pos[1][times] = times;
 	times++;
+
 }
 
-__declspec(dllexport) void SetStart(int xpos, int ypos) {
-	startX = xpos;
-	startY = ypos;
-	isSetStarted = true;
-}
-
-__declspec(dllexport) void GetStart(int& xpos, int& ypos) {
-	if (!isSetStarted) {
-		xpos = -1;
-		ypos = -1;
+__declspec(dllexport) bool SetStart(int xpos, int ypos) {
+	if (xpos != NULL && ypos != NULL)
+	{
+		startX = xpos;
+		startY = ypos;
+		isSetStarted = true;
+		return true;
 	}
 	else
 	{
+		return false;
+	}
+}
+
+__declspec(dllexport) bool GetStart(int& xpos, int& ypos) {
+	if (!isSetStarted) {
 		xpos = startX;
 		ypos = startY;
+		return true;
+	}
+	else
+	{
+		return false;
 	}
 }
 
-__declspec(dllexport) void SetEnd(int xpos, int ypos) {
-	endX = xpos;
-	endY = ypos;
-	isSetEnded = true;
+__declspec(dllexport) bool SetEnd(int xpos, int ypos) {
+	if (xpos != NULL && ypos != NULL) {
+		endX = xpos;
+		endY = ypos;
+		isSetEnded = true;
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 }
 
 
-__declspec(dllexport) void GetEnd(int& xpos, int& ypos) {
-	if (!isSetEnded) {
-		xpos = -1;
-		ypos = -1;
-	}
-	else {
+__declspec(dllexport) bool GetEnd(int& xpos, int& ypos) {
+	if (isSetEnded) {
 		xpos = endX;
 		ypos = endY;
+		return true;
 	}
+	else {
+		return false;
+	}
+}
+
+__declspec(dllexport) bool Restart()
+{
+
 }
