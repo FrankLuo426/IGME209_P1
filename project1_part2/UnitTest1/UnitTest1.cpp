@@ -4,13 +4,14 @@
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
 __declspec(dllimport) char* GetTeam();
-__declspec(dllimport) void SetStart(int xpos, int ypos);
+__declspec(dllimport) bool SetStart(int xpos, int ypos);
 __declspec(dllimport) bool SetMaze(const int** tempData, int width, int height);
 __declspec(dllimport) int** GetMaze(int& width, int& height);
-__declspec(dllimport) void GetNextPosition(int& xpos, int& ypos);
-__declspec(dllimport) void SetEnd(int xpos, int ypos);
-__declspec(dllimport) void GetEnd(int& xpos, int& ypos);
-__declspec(dllimport) void GetStart(int& xpos, int& ypos);
+__declspec(dllimport) bool GetNextPosition(int& xpos, int& ypos);
+__declspec(dllimport) bool SetEnd(int xpos, int ypos);
+__declspec(dllimport) bool GetEnd(int& xpos, int& ypos);
+__declspec(dllimport) bool GetStart(int& xpos, int& ypos);
+__declspec(dllimport) bool Restart();
 
 namespace UnitTest1
 {
@@ -117,7 +118,7 @@ namespace UnitTest1
 		{
 			try
 			{
-				SetEnd(1, 2);
+				SetEnd(3, 6);
 			}
 			catch (const std::exception&)
 			{
@@ -134,6 +135,17 @@ namespace UnitTest1
 				int& xA = x;
 				int& yA = y;
 				GetEnd(xA, yA);
+			}
+			catch (const std::exception&)
+			{
+				Assert::Fail(L"set start threw exception");
+			}
+		}
+		TEST_METHOD(TestRestart)
+		{
+			try
+			{
+				Restart();
 			}
 			catch (const std::exception&)
 			{

@@ -11,12 +11,11 @@ int endX;
 int endY;
 
 int pos[2][100];
-int times;
+int timesX;
+int timesY;
 
 bool isSetStarted;
 bool isSetEnded;
-
-
 
 __declspec(dllexport) char* GetTeam() {
 	return memberName;
@@ -29,7 +28,6 @@ __declspec(dllexport) bool SetMaze(const int** data, int width, int height) {
 		mazeWidth = width;
 		mazeHeight = height;
 		mazeData = new int* [width];
-
 
 		for (int i = 0; i < width; i++) {
 			mazeData[i] = new int[height];
@@ -62,11 +60,12 @@ __declspec(dllexport) int** GetMaze(int& width, int& height) {
 
 __declspec(dllexport) bool GetNextPosition(int& xpos, int& ypos) {
 
-	if (pos[0][times]!=NULL && pos[1][times] != NULL)
+	if (pos[0][timesX] != NULL && pos[1][timesY] != NULL)
 	{
-		xpos = pos[0][times] = times;
-		ypos = pos[1][times] = times;
-		times++;
+		xpos = pos[0][timesX] = 1;
+		ypos = pos[1][timesY] = 1;
+		timesX++;
+		timesY++;
 		return true;
 	}
 	else
@@ -128,5 +127,15 @@ __declspec(dllexport) bool GetEnd(int& xpos, int& ypos) {
 
 __declspec(dllexport) bool Restart()
 {
-
+	try
+	{
+		//Type here
+		timesX = 0;
+		timesY = 0;
+	}
+	catch (const std::exception&)
+	{
+		return false;
+	}
+	return true;
 }

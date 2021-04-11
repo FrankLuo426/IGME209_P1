@@ -1,0 +1,7 @@
+﻿  Graph.cpp
+E:\ClassWork\IGME209\IGME209_P1\project1_part2\project1\Graph.cpp(44,12): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+  Source.cpp
+  Vertex.cpp
+  Generating Code...
+     Creating library E:\ClassWork\IGME209\IGME209_P1\project1_part2\x64\Debug\project1.lib and object E:\ClassWork\IGME209\IGME209_P1\project1_part2\x64\Debug\project1.exp
+  project1.vcxproj -> E:\ClassWork\IGME209\IGME209_P1\project1_part2\x64\Debug\project1.dll
