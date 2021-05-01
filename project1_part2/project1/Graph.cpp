@@ -3,8 +3,6 @@
 #include <list>
 #include <algorithm>
 
-using namespace std;
-
 Graph::Graph() {}
 
 Graph::Graph(vector<Vertex> _vertices, int** _adjList, int _xMax, int _yMax)
@@ -93,9 +91,9 @@ int Graph::heuristic(Vertex startVertex, Vertex endVertex) {
 	return h;
 }
 
-bool compareInterval(Vertex i1, Vertex i2)
+bool compareDistance(Vertex vertex1, Vertex vertex2)
 {
-	return (i1.lowestCost < i2.lowestCost);
+	return (vertex1.lowestCost < vertex2.lowestCost);
 }
 
 //A Star
@@ -108,7 +106,7 @@ vector<Vertex> Graph::AStar(Graph graph, Vertex startVertex, Vertex endVertex, v
 	open_set.push_back(startVertex);
 
 	while (open_set.size() > 0) {
-		sort(open_set.begin(), open_set.end(), compareInterval);
+		sort(open_set.begin(), open_set.end(), compareDistance);
 
 		Vertex currentVertex = open_set[0];
 		open_set.erase(open_set.begin());
@@ -137,7 +135,7 @@ vector<Vertex> Graph::AStar(Graph graph, Vertex startVertex, Vertex endVertex, v
 			nearbyVertex.lowestCost = heuristic(startVertex, currentVertex) + heuristic(currentVertex, nearbyVertex) + heuristic(nearbyVertex, endVertex);
 		}
 
-		sort(nearbyList.begin(), nearbyList.end(), compareInterval);
+		sort(nearbyList.begin(), nearbyList.end(), compareDistance);
 
 		Vertex holdCurrentVertex = currentVertex;
 
@@ -215,6 +213,6 @@ vector<Vertex> Graph::AStar(Graph graph, Vertex startVertex, Vertex endVertex, v
 			}
 		}
 	}
-	vector<Vertex> emptyPath;
-	return emptyPath;
+	vector<Vertex> nullPath;
+	return nullPath;
 }

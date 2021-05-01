@@ -1,9 +1,4 @@
 ﻿  Graph.cpp
-E:\ClassWork\IGME209\IGME209_P1\project1_part2\project1\Graph.cpp(134,21): warning C4018: '<': signed/unsigned mismatch
-E:\ClassWork\IGME209\IGME209_P1\project1_part2\project1\Graph.cpp(144,21): warning C4018: '<': signed/unsigned mismatch
-  Source.cpp
-E:\ClassWork\IGME209\IGME209_P1\project1_part2\project1\Source.cpp(109,12): warning C4018: '<': signed/unsigned mismatch
-  Vertex.cpp
-  Generating Code...
-E:\ClassWork\IGME209\IGME209_P1\project1_part2\project1\Source.cpp(152): warning C4715: 'SetEnd': not all control paths return a value
+E:\ClassWork\IGME209\IGME209_P1\project1_part2\project1\Graph.cpp(132,21): warning C4018: '<': signed/unsigned mismatch
+E:\ClassWork\IGME209\IGME209_P1\project1_part2\project1\Graph.cpp(142,21): warning C4018: '<': signed/unsigned mismatch
   project1.vcxproj -> E:\ClassWork\IGME209\IGME209_P1\project1_part2\Debug\project1.dll

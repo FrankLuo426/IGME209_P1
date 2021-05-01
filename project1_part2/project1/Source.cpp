@@ -1,9 +1,6 @@
 #include "pch.h"
 #include "Vertex.h"
 #include "Graph.h"
-#include <iostream> 
-#include <vector> 
-using namespace std;
 
 char* memberName = (char*)"John Zhang Frank Luo";
 
