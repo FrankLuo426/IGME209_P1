@@ -1,11 +1,14 @@
 #include "pch.h"
 #include "Vertex.h"
 
-Vertex::Vertex(int _xPos, int _yPos, bool _visited)
+Vertex::Vertex() {}
+
+Vertex::Vertex(int _xPos, int _yPos, int _heuristic, int _lowestCost)
 {
-    xPos = _xPos;
-    yPos = _yPos;
-    visited = _visited;
-    heuristic = 0;
-    lowesCost = INT_MAX;
+	xPos = _xPos;
+	yPos = _yPos;
+	heuristic = _heuristic;
+	lowestCost = _lowestCost;
 }
+
+Vertex::~Vertex() {};

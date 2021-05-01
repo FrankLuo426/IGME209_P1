@@ -4,11 +4,13 @@ class Vertex
 public:
 	int xPos;
 	int yPos;
-	int lowesCost = INT_MAX;
+	int lowestCost;
 	int heuristic;
-	bool visited;
 
 	Vertex* previousVertex;
-	Vertex(int _xPos, int _yPos, bool _visited);
+	
+	Vertex();
+	Vertex(int _xPos, int _yPos, int _heuristic, int _lowestCost);
+	~Vertex();
 };
 

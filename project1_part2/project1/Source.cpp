@@ -1,21 +1,30 @@
 #include "pch.h"
+#include "Vertex.h"
+#include "Graph.h"
+#include <iostream> 
+#include <vector> 
+using namespace std;
 
 char* memberName = (char*)"John Zhang Frank Luo";
 
-int** mazeData;
+const int** mazeData;
 int mazeWidth;
 int mazeHeight;
+
+int** adjList;
+vector<Vertex> vertices;
+Graph graph;
+
+vector<Vertex> path;
+int times = 0;
+
 int startX;
 int startY;
 int endX;
 int endY;
 
-int pos[2][100];
-int timesX;
-int timesY;
 
-bool isSetStarted;
-bool isSetEnded;
+bool isSetStarted = false;
 
 __declspec(dllexport) char* GetTeam() {
 	return memberName;
@@ -25,21 +34,31 @@ __declspec(dllexport) bool SetMaze(const int** data, int width, int height) {
 
 	try
 	{
+		isSetStarted = false;
+
 		mazeWidth = width;
 		mazeHeight = height;
-		mazeData = new int* [width];
+		mazeData = data;
 
-		for (int i = 0; i < width; i++) {
-			mazeData[i] = new int[height];
+		adjList = new int* [mazeWidth];
+
+		for (int i = 0; i < mazeWidth; ++i) {
+			adjList[i] = new int[mazeHeight];
 		}
 
 
-		for (int i = 0; i < width; i++) {
-			for (int j = 0; j < height; j++) {
-				mazeData[i][j] = (int)data[i][j];
+		for (int i = 0; i < mazeWidth; i++) {
+			for (int j = 0; j < mazeHeight; j++) {
+				adjList[i][j] = mazeData[i][j];
+
+				if (adjList[i][j] == 0) {
+					Vertex temp = Vertex(i, j, 0, 0);
+					vertices.push_back(temp);
+				}
 			}
 		}
 
+		graph = Graph(vertices, adjList, mazeWidth, mazeHeight);
 	}
 	catch (const std::exception&)
 	{
@@ -49,73 +68,92 @@ __declspec(dllexport) bool SetMaze(const int** data, int width, int height) {
 }
 
 __declspec(dllexport) int** GetMaze(int& width, int& height) {
+	width = mazeWidth;
+	height = mazeHeight;
 	if (mazeData == NULL)
 	{
 		return nullptr;
 	}
-	width = mazeWidth;
-	height = mazeHeight;
-	return mazeData;
+	else
+	{
+		int** tempMaze = new int* [mazeWidth];
+
+		for (int i = 0; i < mazeWidth; ++i) {
+			tempMaze[i] = new int[mazeHeight];
+		}
+
+		for (int i = 0; i < mazeWidth; i++) {
+			for (int j = 0; j < mazeHeight; j++) {
+				tempMaze[i][j] = mazeData[i][j];
+			}
+		}
+
+		return tempMaze;
+	}
 }
 
 __declspec(dllexport) bool GetNextPosition(int& xpos, int& ypos) {
 
-	if (pos[0][timesX] != NULL && pos[1][timesY] != NULL)
+	if (!isSetStarted)
 	{
-		xpos = pos[0][timesX] = 1;
-		ypos = pos[1][timesY] = 1;
-		timesX++;
-		timesY++;
+		times = 0;
+		path = graph.AStar(graph, Vertex(startX, startY, 0, 0), Vertex(endX, endY, 0, 0), vertices, adjList);
+		isSetStarted = true;
+
+		for (int i = 0; i < mazeWidth; i++) {
+			delete[] adjList[i];
+		}
+		delete[] adjList;
+	}
+
+	if (times < path.size()) {
+		xpos = path[times].xPos;
+		ypos = path[times].yPos;
+		times++;
 		return true;
 	}
-	else
-	{
+	else {
 		return false;
 	}
 }
 
 __declspec(dllexport) bool SetStart(int xpos, int ypos) {
-	if (xpos != NULL && ypos != NULL)
-	{
+	if (xpos < mazeWidth && ypos < mazeHeight && xpos >= 0 && ypos >= 0) {
 		startX = xpos;
 		startY = ypos;
-		isSetStarted = true;
+		isSetStarted = false;
+
 		return true;
 	}
-	else
-	{
+	else {
 		return false;
 	}
 }
 
 __declspec(dllexport) bool GetStart(int& xpos, int& ypos) {
-	if (!isSetStarted) {
+	if (startX != NULL && startY != NULL) {
 		xpos = startX;
 		ypos = startY;
 		return true;
 	}
-	else
-	{
+	else {
 		return false;
 	}
 }
 
 __declspec(dllexport) bool SetEnd(int xpos, int ypos) {
-	if (xpos != NULL && ypos != NULL) {
+	if (xpos < mazeWidth && ypos < mazeHeight && xpos >= 0 && ypos >= 0) {
 		endX = xpos;
 		endY = ypos;
-		isSetEnded = true;
+		isSetStarted = false;
+
 		return true;
-	}
-	else
-	{
-		return false;
 	}
 }
 
 
 __declspec(dllexport) bool GetEnd(int& xpos, int& ypos) {
-	if (isSetEnded) {
+	if (endX != NULL && endY != NULL) {
 		xpos = endX;
 		ypos = endY;
 		return true;
@@ -129,9 +167,7 @@ __declspec(dllexport) bool Restart()
 {
 	try
 	{
-		//Type here
-		timesX = 0;
-		timesY = 0;
+		times = 0;
 	}
 	catch (const std::exception&)
 	{
