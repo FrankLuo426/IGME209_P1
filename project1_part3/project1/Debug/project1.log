@@ -1,4 +1,12 @@
-﻿  Graph.cpp
-E:\ClassWork\IGME209\IGME209_P1\project1_part3\project1\Graph.cpp(131,21): warning C4018: '<': signed/unsigned mismatch
-E:\ClassWork\IGME209\IGME209_P1\project1_part3\project1\Graph.cpp(141,21): warning C4018: '<': signed/unsigned mismatch
-  project1.vcxproj -> E:\ClassWork\IGME209\IGME209_P1\project1_part3\Debug\project1.dll
+﻿  pch.cpp
+  dllmain.cpp
+  Graph.cpp
+E:\Google Drive\学术\IGME 209\IGME209_01\Project\IGME209_P1\project1_part3\project1\Graph.cpp(131,21): warning C4018: '<': signed/unsigned mismatch
+E:\Google Drive\学术\IGME 209\IGME209_01\Project\IGME209_P1\project1_part3\project1\Graph.cpp(141,21): warning C4018: '<': signed/unsigned mismatch
+  Source.cpp
+E:\Google Drive\学术\IGME 209\IGME209_01\Project\IGME209_P1\project1_part3\project1\Source.cpp(109,12): warning C4018: '<': signed/unsigned mismatch
+  Vertex.cpp
+  Generating Code...
+E:\Google Drive\学术\IGME 209\IGME209_01\Project\IGME209_P1\project1_part3\project1\Source.cpp(156): warning C4715: 'SetEnd': not all control paths return a value
+     Creating library E:\Google Drive\学术\IGME 209\IGME209_01\Project\IGME209_P1\project1_part3\Debug\project1.lib and object E:\Google Drive\学术\IGME 209\IGME209_01\Project\IGME209_P1\project1_part3\Debug\project1.exp
+  project1.vcxproj -> E:\Google Drive\学术\IGME 209\IGME209_01\Project\IGME209_P1\project1_part3\Debug\project1.dll

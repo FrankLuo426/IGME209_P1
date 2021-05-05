@@ -211,3 +211,4 @@ vector<Vertex> Graph::AStar(Graph graph, Vertex startVertex, Vertex endVertex, v
 	vector<Vertex> nullPath;
 	return nullPath;
 }
+
