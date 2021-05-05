@@ -1,0 +1,15 @@
+﻿  pch.cpp
+  dllmain.cpp
+  Graph.cpp
+E:\ClassWork\IGME209\IGME209_P1\project1_part3\project1\Graph.cpp(131,21): warning C4018: '<': signed/unsigned mismatch
+E:\ClassWork\IGME209\IGME209_P1\project1_part3\project1\Graph.cpp(141,21): warning C4018: '<': signed/unsigned mismatch
+  Source.cpp
+E:\ClassWork\IGME209\IGME209_P1\project1_part3\project1\Source.cpp(109,12): warning C4018: '<': signed/unsigned mismatch
+  Vertex.cpp
+     Creating library E:\ClassWork\IGME209\IGME209_P1\project1_part3\Release\project1.lib and object E:\ClassWork\IGME209\IGME209_P1\project1_part3\Release\project1.exp
+  Generating code
+  Previous IPDB not found, fall back to full compilation.
+E:\ClassWork\IGME209\IGME209_P1\project1_part3\project1\Source.cpp(156): warning C4715: 'SetEnd': not all control paths return a value
+  All 222 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+  project1.vcxproj -> E:\ClassWork\IGME209\IGME209_P1\project1_part3\Release\project1.dll
